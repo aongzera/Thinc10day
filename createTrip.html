@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Plan</title>
     <link rel="stylesheet" href="createTrip.css">
+    <link rel="icon" href="456.png" type="456.png">
 </head>
 <body>
     <div class="container">
@@ -18,6 +19,8 @@
             <div class="input-group">
                 <label for="location">Location</label>
                 <input id="location" type="text" placeholder="Enter location" />
+                
+                <div id="map"></div>
             </div>
             
             <div class="input-group">
@@ -41,7 +44,9 @@
             </div>
         </form>
     </div>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_VALID_API_KEY&callback=initMap" async defer></script>-->
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9vtQD3a8S8WRmUyIKOhehW1P2ROxVj2E&callback=initMap" async defer></script>
 
     <script src="createTrip.js"></script>
 </body>

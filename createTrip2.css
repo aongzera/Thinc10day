@@ -1,71 +1,82 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f1f1f1;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    background-color: #e0f2f1;
-    border-radius: 8px;
-    padding: 20px;
-  }
-  
-  .header h1 {
-    text-align: center;
-    color: #1e88e5;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .select-member label {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  #member-select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .checkboxes label {
-    display: block;
-    font-size: 14px;
-    margin: 5px 0;
-  }
-  
-  .checkboxes input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  button {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .back-btn {
-    background-color: #ffeb3b;
-  }
-  
-  .next-btn {
-    background-color: #4caf50;
-    color: white;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #e0f2f1;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow: auto; /* Allow scrolling if content exceeds container height */
+}
+
+.header h1 {
+  text-align: center;
+  color: #1e88e5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.select-member label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#member-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkboxes label {
+  display: block;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.checkboxes input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-btn {
+  background-color: #ffeb3b;
+}
+
+.next-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 15px;
+  flex-shrink: 0; /* Prevent the map from shrinking */
+}
