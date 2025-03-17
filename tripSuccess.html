@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Creation Success</title>
+    <link rel="stylesheet" href="tripSucces.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Success!</h2>
+        <div>
+            <p><strong>Trip Name:</strong> <span id="trip-name-display"></span></p>
+            <p><strong>Location:</strong> <span id="location-display"></span></p>
+            <p><strong>Budget:</strong> <span id="budget-display"></span></p>
+            <p><strong>From:</strong> <span id="from-display"></span></p>
+            <p><strong>To:</strong> <span id="to-display"></span></p>
+        </div>
+        <button onclick="window.location.href='home.html'">Go to Homepage</button>
+        <button onclick="window.location.href='createTrip.html'">Create Another Trip</button>
+    </div>
+    <script src="createTrip.js"></script>
+    <script>
+        // Retrieve the data from localStorage
+        const tripName = localStorage.getItem("tripName");
+        const triplocation = localStorage.getItem("location");
+        const budget = localStorage.getItem("budget");
+        const from = localStorage.getItem("from");
+        const to = localStorage.getItem("to");
+
+        console.log(tripName);
+
+        // Displaying the trip data dynamically
+        document.getElementById('trip-name-display').innerText = tripName;
+        document.getElementById('location-display').innerText = triplocation;
+        document.getElementById('budget-display').innerText = budget;
+        document.getElementById('from-display').innerText = from;
+        document.getElementById('to-display').innerText = to;
+    </script>
+</body>
+</html>
