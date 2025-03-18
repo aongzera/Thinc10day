@@ -48,6 +48,7 @@
                   localStorage.setItem('userId', profile.userId);
                   localStorage.setItem('userName', profile.displayName);
                   localStorage.setItem('userPicture', profile.pictureUrl);
+                  alert("Welcome " + profile.displayName);
                   
                   // Optional: To ensure data is saved before redirecting
                   
@@ -61,5 +62,4 @@
           console.error("LIFF initialization failed", error);
       });
   }
-  alert("Welcome " + localStorage.getItem("Username"));
 </script>
