@@ -67,11 +67,21 @@ button {
 .cancel-btn {
     background-color: #ccc;
     color: white;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #727272;
 }
 
 .next-btn {
-    background-color: #4CAF50;
+    background-color: #44b548;
     color: white;
+    cursor: pointer;
+}
+
+.next-btn:hover {
+    background-color: #428642;
 }
 
 @media (min-width: 768px) {
