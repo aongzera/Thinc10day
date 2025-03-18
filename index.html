@@ -11,7 +11,7 @@
   <header>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="#">Sign Up</a></li>
+      <li><a href="#" onclick="login()">Sign Up</a></li>
       <li><a href="#">Log In</a></li>
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact Us</a></li>
@@ -30,3 +30,32 @@
   </footer>
 </body>
 </html>
+<script>
+  function login() {
+            liff.init({
+                liffId: "2007065910-69E5BVwy"
+            }).then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                } else {
+                    // Fetch user profile after successful login
+                    liff.getProfile().then(profile => {
+                        console.log("a")
+                        localStorage.setItem('userId', profile.userId);
+                        localStorage.setItem('userName', profile.displayName);
+                        localStorage.setItem('userPicture', profile.pictureUrl);
+                        
+                        // Optional: To ensure data is saved before redirecting
+                        alert("Welcome " + profile.displayName);
+                        
+                        // Perform a redirect after saving the data, if required
+                        // window.location.href = "your-endpoint-url"; // Uncomment and update as needed
+                    }).catch((error) => {
+                        console.error("Error retrieving profile", error);
+                    });
+                }
+            }).catch((error) => {
+                console.error("LIFF initialization failed", error);
+            });
+        }
+</script>
