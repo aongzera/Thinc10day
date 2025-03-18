@@ -69,7 +69,7 @@ body {
   .profile-container {
     position: absolute;
     top: 60px; /* Moved down just below the blue line */
-    right: 10px; /* Position profile on the right side */
+    right: 5px; /* Position profile on the right side */
     display: flex;
     align-items: center;
     gap: 10px;
