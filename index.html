@@ -41,8 +41,6 @@
       }).then(() => {
           if (!liff.isLoggedIn()) {
               liff.login();
-              alert("Welcome " + profile.displayName);
-              
           } else {
               // Fetch user profile after successful login
               liff.getProfile().then(profile => {
@@ -51,7 +49,6 @@
                   localStorage.setItem('userPicture', profile.pictureUrl);
                   
                   // Optional: To ensure data is saved before redirecting
-                  alert("Welcome " + profile.displayName);
                   
                   // Perform a redirect after saving the data, if required
                   // window.location.href = "your-endpoint-url"; // Uncomment and update as needed
@@ -63,4 +60,5 @@
           console.error("LIFF initialization failed", error);
       });
   }
+  alert("Welcome " + profile.displayName);
 </script>
