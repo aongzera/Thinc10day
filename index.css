@@ -64,36 +64,38 @@ body {
   }
 
     /* Add styles for the profile circle */
-    .profile-container {
-      position: absolute;
-      top: 100px; /* Moved down more */
-      right: 10px; /* Profile picture on the right */
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-  
-    .profile-pic {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: gray; /* fallback if no picture */
-      object-fit: cover;
-    }
-  
-    .username {
-      font-size: 16px;
-      color: #000;
-      cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
-      text-align: left; /* Align name to the left */
-      display: inline-block;
-      padding-left: 10px;
-      transition: all 0.3s ease; /* Smooth transition for underline effect */
-    }
-  
-    .username:hover {
-      text-decoration: underline; /* Underline appears on hover */
-    }
+
+  /* Add styles for the profile circle */
+  .profile-container {
+    position: absolute;
+    top: 60px; /* Moved down just below the blue line */
+    right: 10px; /* Position profile on the right side */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: gray; /* fallback if no picture */
+    object-fit: cover;
+  }
+
+  .username {
+    font-size: 16px;
+    color: #000;
+    cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+    text-align: left; /* Align name to the left */
+    display: inline-block;
+    padding-left: 10px;
+    transition: all 0.3s ease; /* Smooth transition for underline effect */
+  }
+
+  .username:hover {
+    text-decoration: underline; /* Underline appears on hover */
+  }
 
 
 
