@@ -1,82 +1,126 @@
-body {
-  font-family: Arial, sans-serif;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #f1f1f1;
 }
 
-.container {
-  width: 100%;
-  max-width: 400px;
-  margin: 50px auto;
-  background-color: #e0f2f1;
-  border-radius: 8px;
-  padding: 20px;
+body {
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+  /* Make sure body fills the entire screen for proper centering */
+  min-height: 100vh; 
+}
+
+/* Center the container both horizontally and vertically */
+.page-container {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  overflow: auto; /* Allow scrolling if content exceeds container height */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* so the container is truly centered */
+  padding: 20px;
+}
+
+/* The main container for the plan UI */
+.plan-container {
+  background-color: #E4F1AC; /* A light green background for the container */
+  width: 360px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* so the header background stays crisp at corners */
+}
+
+/* Header area with a slightly darker background or highlight */
+.header {
+  background-color: #A7D477;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* if you have a menu icon or something on the right */
 }
 
 .header h1 {
-  text-align: center;
-  color: #1e88e5;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.select-member label {
-  font-size: 16px;
+  margin: 0;
+  font-size: 20px;
   font-weight: bold;
 }
 
-#member-select {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+ /*If you have a "..." menu in the header (optional) */
+.header-menu {
+  cursor: pointer;
+  font-size: 24px;
 }
 
-.checkboxes label {
+
+/* Content spacing */
+.member-selection,
+.select-all,
+.member-list,
+.button-row {
+  padding: 16px;
+}
+
+/* Label and dropdown styling */
+.member-selection label {
   display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.select-box select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #fff;
   font-size: 14px;
-  margin: 5px 0;
 }
 
-.checkboxes input[type="checkbox"] {
-  margin-right: 10px;
+/* "Select All" checkbox styling */
+.select-all label {
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.buttons {
+/* Member list */
+.member-list .member-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.member-list .member-item input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* The user icon (placeholder: emoji or actual icon) */
+.user-icon {
+  margin-right: 6px;
+}
+
+/* Buttons row */
+.button-row {
   display: flex;
   justify-content: space-between;
+  padding: 16px;
+  background-color: #f5f5f5;
 }
 
-button {
-  padding: 10px 15px;
-  font-size: 16px;
+/* Button styles */
+.btn {
   border: none;
-  border-radius: 5px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 14px;
   cursor: pointer;
 }
 
+/* Specific button colors */
 .back-btn {
-  background-color: #ffeb3b;
+  background-color: #ccc; /* Gray-ish */
+  color: #000;
 }
 
 .next-btn {
-  background-color: #4caf50;
-  color: white;
-}
-
-#map {
-  height: 500px;
-  width: 100%;
-  border-radius: 4px;
-  margin-top: 15px;
-  flex-shrink: 0; /* Prevent the map from shrinking */
+  background-color: #6c9e3f; /* A green tone */
+  color: #fff;
 }

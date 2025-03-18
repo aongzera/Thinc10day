@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="createTrip.css">
     <link rel="icon" href="456.png" type="456.png">
 </head>
+<style>
+    /* Ensure the map has a defined size */
+    #map {
+      height: 300px;
+      width: 100%;
+      margin-top: 10px;
+    }
+  </style>
 <body>
     <div class="container">
         <form class="plan-form">
@@ -18,14 +26,15 @@
             
             <div class="input-group">
                 <label for="location">Location</label>
-                <input id="location" type="text" placeholder="Enter location" />
-                
+                <!-- Now editable so user can type an address -->
+                <input id="location" type="text" placeholder="Click on the map or type an address and press Enter" />
                 <div id="map"></div>
-            </div>
+              </div>
             
             <div class="input-group">
                 <label for="budget">Budget</label>
-                <input type="number" id="budget" placeholder="Insert your budget per person">
+                <!-- Added min="0" to prevent negative numbers -->
+                <input type="number" id="budget" placeholder="Insert your budget per person" min="0">
             </div>
             
             <div class="input-group">
@@ -49,6 +58,95 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9vtQD3a8S8WRmUyIKOhehW1P2ROxVj2E&callback=initMap" async defer></script>
 
     <script src="createTrip.js"></script>
+    <!-- JavaScript to ensure budget cannot be negative -->
+    <script>
+        const budgetInput = document.getElementById('budget');
+        budgetInput.addEventListener('input', function() {
+          if (this.value < 0) {
+            this.value = 0;
+          }
+        });
+      </script>
+     <!-- JavaScript for Google Maps integration and location input -->
+  <script>
+    // Declare global variables so they can be accessed in multiple functions
+    let map, geocoder, marker;
+    
+    function initMap() {
+      // Set a default location (example: San Francisco)
+      const defaultLocation = { lat: 13.736766779601961, lng: 100.53371203070036 };
+      
+      // Initialize the map centered on the default location
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultLocation,
+        zoom: 13
+      });
+      
+      // Initialize the geocoder service
+      geocoder = new google.maps.Geocoder();
+      
+      // Create a draggable marker at the default location
+      marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        draggable: true
+      });
+      
+      // When the map is clicked, move the marker and update the location input
+      map.addListener("click", (e) => {
+        marker.setPosition(e.latLng);
+        map.panTo(e.latLng);
+        geocodeLatLng(e.latLng);
+      });
+      
+      // When the marker is dragged, update the location input
+      marker.addListener("dragend", () => {
+        geocodeLatLng(marker.getPosition());
+      });
+      
+      // Initialize the location input using the default location
+      geocodeLatLng(defaultLocation);
+    }
+    
+    // Listen for the Enter key on the location input field
+    document.getElementById("location").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        geocodeAddress();
+      }
+    });
+    
+    // Geocode an address from the location input and update the map and marker
+    function geocodeAddress() {
+      const address = document.getElementById("location").value;
+      geocoder.geocode({ address: address }, (results, status) => {
+        if (status === "OK") {
+          const newLocation = results[0].geometry.location;
+          map.setCenter(newLocation);
+          marker.setPosition(newLocation);
+          // Optionally update the location input with the formatted address
+          document.getElementById("location").value = results[0].formatted_address;
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+    
+    // Reverse geocode the given LatLng and update the location input
+    function geocodeLatLng(latLng) {
+      geocoder.geocode({ location: latLng }, (results, status) => {
+        if (status === "OK") {
+          if (results[0]) {
+            document.getElementById("location").value = results[0].formatted_address;
+          } else {
+            alert("No results found");
+          }
+        } else {
+          alert("Geocoder failed due to: " + status);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
 
