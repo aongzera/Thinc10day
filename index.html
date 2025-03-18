@@ -5,8 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage</title>
   <link rel="stylesheet" href="index.css">
+  <style>
+    /* Add styles for the profile circle */
+    .profile-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: gray; /* fallback if no picture */
+      object-fit: cover;
+    }
+
+    .username {
+      font-size: 16px;
+      color: #000;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Profile Container (Hidden initially, will be populated after login) -->
+  <div class="profile-container" id="profile-container" style="display: none;">
+    <img id="profile-pic" class="profile-pic" alt="Profile Picture">
+    <span id="username" class="username"></span>
+  </div>
 
   <header>
     <ul>
@@ -16,7 +46,6 @@
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact Us</a></li>
     </ul>
-    
   </header>
 
   <div class="container">
@@ -32,11 +61,9 @@
   </footer>
 
   <!-- LIFF SDK included at the bottom of the body -->
-</body>
-</html>
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script>
-  function login() {
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script>
+    function login() {
       liff.init({
           liffId: "2007065910-69E5BVwy"
       }).then(() => {
@@ -49,11 +76,11 @@
                   localStorage.setItem('userName', profile.displayName);
                   localStorage.setItem('userPicture', profile.pictureUrl);
                   alert("Welcome " + profile.displayName);
-                  
-                  // Optional: To ensure data is saved before redirecting
-                  
-                  // Perform a redirect after saving the data, if required
-                  // window.location.href = "your-endpoint-url"; // Uncomment and update as needed
+
+                  // Show profile picture and username on the page
+                  document.getElementById('profile-container').style.display = 'flex';
+                  document.getElementById('profile-pic').src = profile.pictureUrl;
+                  document.getElementById('username').innerText = profile.displayName;
               }).catch((error) => {
                   console.error("Error retrieving profile", error);
               });
@@ -61,5 +88,7 @@
       }).catch((error) => {
           console.error("LIFF initialization failed", error);
       });
-  }
-</script>
+    }
+  </script>
+</body>
+</html>
