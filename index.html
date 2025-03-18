@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage</title>
   <link rel="stylesheet" href="index.css">
-  <script src="https://static.line-scdn.net/liff/2.1/sdk.js"></script>
 </head>
 <body>
-
 
   <header>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="#" onclick="login()">Log In</a></li>
-      <li><a href="#">Log In</a></li>
+      <li><a href="#" onclick="login()">Sign Up</a></li>
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact Us</a></li>
     </ul>
@@ -29,35 +27,40 @@
   <footer>
     <div class="footer">
       <p>&copy; 2025 IdieforawhilecuzIseeyoursmile</p>
+    </div>
   </footer>
+
+  <!-- LIFF SDK included at the bottom of the body -->
 </body>
 </html>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
   function login() {
-            liff.init({
-                liffId: "2007065910-69E5BVwy"
-            }).then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
-                    // Fetch user profile after successful login
-                    liff.getProfile().then(profile => {
-                        console.log("a")
-                        localStorage.setItem('userId', profile.userId);
-                        localStorage.setItem('userName', profile.displayName);
-                        localStorage.setItem('userPicture', profile.pictureUrl);
-                        
-                        // Optional: To ensure data is saved before redirecting
-                        alert("Welcome " + profile.displayName);
-                        
-                        // Perform a redirect after saving the data, if required
-                        // window.location.href = "your-endpoint-url"; // Uncomment and update as needed
-                    }).catch((error) => {
-                        console.error("Error retrieving profile", error);
-                    });
-                }
-            }).catch((error) => {
-                console.error("LIFF initialization failed", error);
-            });
-        }
+      liff.init({
+          liffId: "2007065910-69E5BVwy"
+      }).then(() => {
+          if (!liff.isLoggedIn()) {
+              liff.login();
+              alert("Welcome " + profile.displayName);
+              
+          } else {
+              // Fetch user profile after successful login
+              liff.getProfile().then(profile => {
+                  localStorage.setItem('userId', profile.userId);
+                  localStorage.setItem('userName', profile.displayName);
+                  localStorage.setItem('userPicture', profile.pictureUrl);
+                  
+                  // Optional: To ensure data is saved before redirecting
+                  alert("Welcome " + profile.displayName);
+                  
+                  // Perform a redirect after saving the data, if required
+                  // window.location.href = "your-endpoint-url"; // Uncomment and update as needed
+              }).catch((error) => {
+                  console.error("Error retrieving profile", error);
+              });
+          }
+      }).catch((error) => {
+          console.error("LIFF initialization failed", error);
+      });
+  }
 </script>
