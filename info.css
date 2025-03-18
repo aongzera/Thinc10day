@@ -1,0 +1,11 @@
+.infotopic{
+    background-color: green;
+}
+
+div{
+    display: flex;
+}
+
+/* .loca{
+    flex-direction: column;
+} */
