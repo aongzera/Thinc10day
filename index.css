@@ -63,4 +63,28 @@ body {
     font-size: 20px;
   }
 
+  /* Add styles for the profile circle */
+  .profile-container {
+    position: absolute;
+    top: 50px; /* Adjusted to move the profile down */
+    right: 10px; /* Move profile to the right */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: gray; /* fallback if no picture */
+    object-fit: cover;
+  }
+
+  .username {
+    font-size: 16px;
+    color: #000;
+  }
+
+
 
