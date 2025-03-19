@@ -6,15 +6,17 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #7ecaf7;  /* Updated background color */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
+
 .container {
-    background-color: white;
+    background-color:rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -75,13 +77,13 @@ button {
 }
 
 .next-btn {
-    background-color: #44b548;
+    background-color: #2596be;
     color: white;
     cursor: pointer;
 }
 
 .next-btn:hover {
-    background-color: #428642;
+    background-color: #1d80a3;
 }
 
 @media (min-width: 768px) {
@@ -102,3 +104,4 @@ button {
     border-radius: 4px; /* Adds border radius for map corners */
     margin-top: 20px; /* Adds space between input and map */
 }
+       
