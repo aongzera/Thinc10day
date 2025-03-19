@@ -39,8 +39,7 @@
     // Initialize LIFF and handle login state
     function login() {
       liff.init({
-          liffId: "2007065910-69E5BVwy"
-          // Replace with your own LIFF ID "2007065910-69E5BVwy"
+          liffId: "2007065910-69E5BVwy" // Replace with your own LIFF ID
       }).then(() => {
         if (!liff.isLoggedIn()) {
           // If not logged in, log the user in
@@ -74,7 +73,7 @@
     // Automatically check if the user is logged in when the page loads
     document.addEventListener('DOMContentLoaded', function() {
       liff.init({
-        liffId: localStorage.getElementById('userId') // Replace with your own LIFF ID
+        liffId: "2007065910-69E5BVwy" // Replace with your own LIFF ID
       }).then(() => {
         if (liff.isLoggedIn()) {
           // If already logged in, fetch the user profile immediately
@@ -84,8 +83,13 @@
         console.error("LIFF initialization failed", error);
       });
     });
-  </script>
 
+    // Call login function when the login button is clicked
+    document.querySelector('a[href="#"]').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default anchor behavior
+      login(); // Trigger the login function
+    });
+  </script>
 
   <footer>
     <div class="footer">
@@ -95,6 +99,3 @@
 
 </body>
 </html>
-</body>
-</html>
-
