@@ -1,139 +1,229 @@
 <!DOCTYPE html>
- <!DOCTYPE html>
- <html lang="en">
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   <title>Create Plan</title>
-   <link rel="stylesheet" href="createTrip2.css">
-   <link rel="stylesheet" href="createTrip2.css" />
- </head>
- <body>
- 
-   <div class="container">
-     <div class="header">
-       <h1>Create Plan</h1>
-     </div>
-   <div class="page-container">
-     <div class="plan-container">
-       <!-- Header / Title -->
-       <div class="header">
-         <h1>Create plan</h1>
-         <!-- An optional "more" icon or menu icon on the top right -->
-         <div class="header-menu">⋮</div> 
-       </div>
- 
-     <div class="form">
-       <div class="select-member">
-         <label for="member-select">Member</label>
-       <!-- Member label and dropdown -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Plan</title>
 
- 
-       <div class="checkboxes">
-       <!-- Select All checkbox -->
-       <div class="select-all">
-         <label>
-           <input type="checkbox" id="selectAll" />
-           --select all--
-         </label>
-       </div>
- 
-       <!-- Member list -->
-       <div class="member-list">
-         <div class="member-item">
-           <input type="checkbox" id="person1" checked />
-           <label for="person1">
-             <image class="profile-image" src="https://profile.line-scdn.net/0hbCIvIbchPWxkDy1eDuNDExRfPgZHfmR-G2smCgYJMF9ZO3ozGDwmXgYGY1oKNyk8S24gC1IPZVxoHEoKelnBWGM_YF1YOXs9TGFyiw"></img>
-             ม
-           </label>
-         </div>
- 
-         <div class="member-item">
-           <input type="checkbox" id="person2" checked />
-           <label for="person2">
-             <img class="profile-image" src="https://profile.line-scdn.net/0h8EU6epaxZ2p4T3dA6twZFQgfZABbPj54BnopBU8aPF0VfHQ7ViktWR4dblNGLCE5XXkvWx1GPVN0XBAMZhmbXn9_OltEeSE7UCEojQ"></img>
-             อองรี.
-           </label>
-         </div>
- 
-         <div class="member-item">
-           <input type="checkbox" id="person3" />
-           <label for="person3">
-             <img class="profile-image" src="https://profile.line-scdn.net/0hi6lRbIKSNhlBKyNLkltIZjF7NXNiWm8LZEsqdyB7Oip5TyNIaB8qKCcvOCB6GyQYbEwsKHUua3tNOEF_X33KLUYbayh9HXBIaUV5_g"></img>
-             Sadoi
-           </label>
-         </div>
- 
-         <div class="member-item">
-           <input type="checkbox" id="person4" />
-           <label for="person4">
-             <img class="profile-image" src="https://profile.line-scdn.net/0h_s2bvsbBAFwfGxDPLZ9-I29LAzY8allON3lNOCIcCzx2KEECZigYOn8SWTh3KkVdZnkbaX8bWTwTCHc6AU38aBgrXW0jLUYNN3VPuw"></img>
-             punt
-           </label>
-         </div>
- 
-         <div class="member-item">
-           <input type="checkbox" id="person5" />
-           <label for="person5">
-             <img class="profile-image" src="https://profile.line-scdn.net/0hRgp8T3ceDUhdQRmSNX5zNy0RDiJ-MFRadnAWfmFEU31mIUtKdiBHfWlEVnAzcBgcciYXJ2wWVC9RUnouQxfxfFpxUHlhd0sZdS9Crw"></img>
-             sDsk
-           </label>
-         </div>
- 
+  <!-- Inline styles -->
+  <style>
+    /* Reset default browser styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-       </div>
- 
-       <!-- Action buttons -->
-       <div class="button-row">
-         <button class="btn back-btn" onclick="window.location.href='createTrip.html'">ย้อนกลับ</button>
-         <button class="btn next-btn" onclick="window.location.href='tripSuccess.html'">ต่อไป</button>
-       </div>
-     </div>
-   </div>
-   <!-- JavaScript to handle "select all" and "select member" functionality -->
-   <script>
-     const selectAllCheckbox = document.getElementById('selectAll');
-     const memberCheckboxes = document.querySelectorAll('.member-list input[type="checkbox"]');
- 
-     // Function to update the "select all" checkbox state
-     function updateSelectAllState() {
-       const allChecked = Array.from(memberCheckboxes).every(cb => cb.checked);
-       selectAllCheckbox.checked = allChecked;
-     }
- 
-     // "Select all" functionality: toggle all visible member checkboxes
-     selectAllCheckbox.addEventListener('change', function(e) {
-       memberCheckboxes.forEach(function(checkbox) {
-         if (checkbox.offsetParent !== null) {
-           checkbox.checked = e.target.checked;
-         }
-       });
-     });
- 
-     // Update "select all" checkbox state based on individual checkbox changes
-     memberCheckboxes.forEach(function(checkbox) {
-       checkbox.addEventListener('change', updateSelectAllState);
-     });
- 
-     // "Select member" functionality from the dropdown
-     document.getElementById('member').addEventListener('change', function(e) {
-       const selectedValue = e.target.value;
-       if (selectedValue) {
-         const memberCheckbox = document.getElementById(selectedValue);
-         if (memberCheckbox && memberCheckbox.offsetParent !== null) {
-           memberCheckbox.checked = true;
-           // Update the "select all" state after manually checking a member
-           updateSelectAllState();
-         }
-         // Reset the dropdown to default
-         e.target.value = "";
-       }
-     });
-   </script>
-   
- 
- </body>
- </html>
- </html>
+    body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #4a90e2, #a0c8f0);
+  height: 100vh;
+  margin: 0;
+}
+
+    /* Top navigation bar */
+    .navbar {
+      background-color: #3f9cdf;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .navbar .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      margin-left: 20px;
+    }
+
+    /* Form container (Create Plan form) */
+    .form-container {
+      background-color: #fff;
+      max-width: 600px;
+      margin: 40px auto 60px auto;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-container h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #3f9cdf;
+      text-align: center;
+    }
+
+    /* Member header (left aligned, bigger text) */
+    .member-header {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 10px;
+      padding-left: 15px;
+      padding-top: 15px;
+    }
+
+    /* "Select all" on its own line */
+    .select-all {
+      margin: 0 15px 15px 15px;
+      padding-top: 15px;
+    }
+    .select-all label {
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Member list container */
+    .member-list {
+      margin: 0 15px;
+    }
+
+    /* Each member item in the list */
+    .member-item {
+      margin-bottom: 10px;
+    }
+
+    /* Put checkbox, image, and name on the same line */
+    .member-item-label {
+      display: flex;
+      align-items: center;
+      color: #333;
+      cursor: pointer;
+    }
+    .member-item-label input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    .profile-image {
+      margin-right: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Action buttons */
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 0 15px;
+    }
+    .btn {
+      background-color: #3f9cdf;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #2b7bac;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navbar -->
+  <div class="navbar">
+    <div class="logo">Trip Planner</div>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">Log In</a>
+      <a href="#">Sign Up</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- Form Container: Create Plan -->
+  <div class="form-container">
+    <h2>Create Plan</h2>
+
+    <!-- "Member" on one line -->
+    <span class="member-header">Member</span>
+
+    <!-- "Select all" on the next line -->
+    <div class="select-all">
+      <label>
+        <input type="checkbox" id="selectAll" />
+        select all
+      </label>
+    </div>
+
+    <!-- Member list -->
+    <div class="member-list">
+      <div class="member-item">
+        <label for="person1" class="member-item-label">
+          <input type="checkbox" id="person1" checked />
+          <img class="profile-image" src="https://profile.line-scdn.net/0hbCIvIbchPWxkDy1eDuNDExRfPgZHfmR-G2smCgYJMF9ZO3ozGDwmXgYGY1oKNyk8S24gC1IPZVxoHEoKelnBWGM_YF1YOXs9TGFyiw" alt="Profile Image">
+          ม
+        </label>
+      </div>
+
+      <div class="member-item">
+        <label for="person2" class="member-item-label">
+          <input type="checkbox" id="person2" checked />
+          <img class="profile-image" src="https://profile.line-scdn.net/0h8EU6epaxZ2p4T3dA6twZFQgfZABbPj54BnopBU8aPF0VfHQ7ViktWR4dblNGLCE5XXkvWx1GPVN0XBAMZhmbXn9_OltEeSE7UCEojQ" alt="Profile Image">
+          อองรี.
+        </label>
+      </div>
+
+      <div class="member-item">
+        <label for="person3" class="member-item-label">
+          <input type="checkbox" id="person3" />
+          <img class="profile-image" src="https://profile.line-scdn.net/0hi6lRbIKSNhlBKyNLkltIZjF7NXNiWm8LZEsqdyB7Oip5TyNIaB8qKCcvOCB6GyQYbEwsKHUua3tNOEF_X33KLUYbayh9HXBIaUV5_g" alt="Profile Image">
+          Sadoi
+        </label>
+      </div>
+
+      <div class="member-item">
+        <label for="person4" class="member-item-label">
+          <input type="checkbox" id="person4" />
+          <img class="profile-image" src="https://profile.line-scdn.net/0h_s2bvsbBAFwfGxDPLZ9-I29LAzY8allON3lNOCIcCzx2KEECZigYOn8SWTh3KkVdZnkbaX8bWTwTCHc6AU38aBgrXW0jLUYNN3VPuw" alt="Profile Image">
+          punt
+        </label>
+      </div>
+
+      <div class="member-item">
+        <label for="person5" class="member-item-label">
+          <input type="checkbox" id="person5" />
+          <img class="profile-image" src="https://profile.line-scdn.net/0hRgp8T3ceDUhdQRmSNX5zNy0RDiJ-MFRadnAWfmFEU31mIUtKdiBHfWlEVnAzcBgcciYXJ2wWVC9RUnouQxfxfFpxUHlhd0sZdS9Crw" alt="Profile Image">
+          sDsk
+        </label>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="button-row">
+      <button class="btn back-btn" onclick="window.location.href='createTrip.html'">ย้อนกลับ</button>
+      <button class="btn next-btn" onclick="window.location.href='tripSuccess.html'">ต่อไป</button>
+    </div>
+  </div>
+
+  <!-- JavaScript: Select All functionality -->
+  <script>
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const memberCheckboxes = document.querySelectorAll('.member-item-label input[type="checkbox"]');
+
+    function updateSelectAllState() {
+      const allChecked = Array.from(memberCheckboxes).every(cb => cb.checked);
+      selectAllCheckbox.checked = allChecked;
+    }
+
+    selectAllCheckbox.addEventListener('change', function(e) {
+      memberCheckboxes.forEach(function(checkbox) {
+        checkbox.checked = e.target.checked;
+      });
+    });
+
+    memberCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', updateSelectAllState);
+    });
+  </script>
+</body>
+</html>
