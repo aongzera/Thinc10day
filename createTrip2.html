@@ -1,33 +1,161 @@
-*<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Plan</title>
-  <link rel="stylesheet" href="createTrip2.css">
-</head>
-<body>
-
-  <div class="container">
-    <div class="header">
-      <h1>Create Plan</h1>
-    </div>
-
-    <div class="form">
-      <div class="select-member">
-        <label for="member-select">Member</label>
-      </div>
-
-      <div class="checkboxes">
-        <label><input type="checkbox" name="person1">friend1</label>
-      </div>
-
-      <div class="buttons">
-        <button class="back-btn" onclick="window.location.href='createTrip.html'">ย้อนกลับ</button>
-        <button class="next-btn" onclick="window.location.href='tripSuccess.html'">เสร็จสิ้น</button>
-      </div>
-    </div>
-  </div>
-
-</body>
-</html>
+<!DOCTYPE html>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>Create Plan</title>
+   <link rel="stylesheet" href="createTrip2.css">
+   <link rel="stylesheet" href="createTrip2.css" />
+ </head>
+ <body>
+ 
+   <div class="container">
+     <div class="header">
+       <h1>Create Plan</h1>
+     </div>
+   <div class="page-container">
+     <div class="plan-container">
+       <!-- Header / Title -->
+       <div class="header">
+         <h1>Create plan</h1>
+         <!-- An optional "more" icon or menu icon on the top right -->
+         <div class="header-menu">⋮</div> 
+       </div>
+ 
+     <div class="form">
+       <div class="select-member">
+         <label for="member-select">Member</label>
+       <!-- Member label and dropdown -->
+       <div class="member-selection">
+         <label for="member">Member</label>
+         <div class="select-box">
+           <select id="member">
+             <option value="person1">person1</option>
+             <option value="person2">person2</option>
+             <option value="person3">person3</option>
+             <option value="person4">person4</option>
+             <option value="person5">person5</option>
+             <option value="person6">person6</option>
+           </select>
+         </div>
+       </div>
+ 
+       <div class="checkboxes">
+         <label><input type="checkbox" name="person1">friend1</label>
+       <!-- Select All checkbox -->
+       <div class="select-all">
+         <label>
+           <input type="checkbox" id="selectAll" />
+           --select all--
+         </label>
+       </div>
+ 
+       <div class="buttons">
+         <button class="back-btn" onclick="window.location.href='createTrip.html'">ย้อนกลับ</button>
+         <button class="next-btn" onclick="window.location.href='tripSuccess.html'">เสร็จสิ้น</button>
+       <!-- Member list -->
+       <div class="member-list">
+         <div class="member-item">
+           <input type="checkbox" id="person1" checked />
+           <label for="person1">
+             <span class="user-icon">👤</span>
+             person1 (evade rate 22%)
+           </label>
+         </div>
+ 
+         <div class="member-item">
+           <input type="checkbox" id="person2" checked />
+           <label for="person2">
+             <span class="user-icon">👤</span>
+             person2 (evade rate 10%)
+           </label>
+         </div>
+ 
+         <div class="member-item">
+           <input type="checkbox" id="person3" />
+           <label for="person3">
+             <span class="user-icon">👤</span>
+             person3 (evade rate 5%)
+           </label>
+         </div>
+ 
+         <div class="member-item">
+           <input type="checkbox" id="person4" />
+           <label for="person4">
+             <span class="user-icon">👤</span>
+             person4 (evade rate 0%)
+           </label>
+         </div>
+ 
+         <div class="member-item">
+           <input type="checkbox" id="person5" />
+           <label for="person5">
+             <span class="user-icon">👤</span>
+             person5 (evade rate 0%)
+           </label>
+         </div>
+ 
+         <div class="member-item">
+           <input type="checkbox" id="person6" />
+           <label for="person6">
+             <span class="user-icon">👤</span>
+             person6 (evade rate 7%)
+           </label>
+         </div>
+       </div>
+ 
+       <!-- Action buttons -->
+       <div class="button-row">
+         <button class="btn back-btn" onclick="window.location.href='createTrip.html'">ย้อนกลับ</button>
+         <button class="btn next-btn" onclick="window.location.href='tripSuccess.html'">ต่อไป</button>
+       </div>
+     </div>
+   </div>
+   <!-- JavaScript to handle "select all" and "select member" functionality -->
+   <script>
+     const selectAllCheckbox = document.getElementById('selectAll');
+     const memberCheckboxes = document.querySelectorAll('.member-list input[type="checkbox"]');
+ 
+     // Function to update the "select all" checkbox state
+     function updateSelectAllState() {
+       const allChecked = Array.from(memberCheckboxes).every(cb => cb.checked);
+       selectAllCheckbox.checked = allChecked;
+     }
+ 
+     // "Select all" functionality: toggle all visible member checkboxes
+     selectAllCheckbox.addEventListener('change', function(e) {
+       memberCheckboxes.forEach(function(checkbox) {
+         if (checkbox.offsetParent !== null) {
+           checkbox.checked = e.target.checked;
+         }
+       });
+     });
+ 
+     // Update "select all" checkbox state based on individual checkbox changes
+     memberCheckboxes.forEach(function(checkbox) {
+       checkbox.addEventListener('change', updateSelectAllState);
+     });
+ 
+     // "Select member" functionality from the dropdown
+     document.getElementById('member').addEventListener('change', function(e) {
+       const selectedValue = e.target.value;
+       if (selectedValue) {
+         const memberCheckbox = document.getElementById(selectedValue);
+         if (memberCheckbox && memberCheckbox.offsetParent !== null) {
+           memberCheckbox.checked = true;
+           // Update the "select all" state after manually checking a member
+           updateSelectAllState();
+         }
+         // Reset the dropdown to default
+         e.target.value = "";
+       }
+     });
+   </script>
+   
+ 
+ </body>
+ </html>
+ </html>

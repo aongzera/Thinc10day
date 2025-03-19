@@ -1,37 +1,4 @@
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 13.73672, lng: 100.5337007 },
-    zoom: 18,
-  });
 
-  var marker = new google.maps.Marker({
-    map: map,
-  });
-
-  // Create an input element and initialize Autocomplete
-  var input = document.getElementById('location');
-  var autocomplete = new google.maps.places.Autocomplete(input);
-
-  // Bind autocomplete to the map bounds
-  autocomplete.bindTo('bounds', map);
-
-  // When a place is selected from autocomplete
-  autocomplete.addListener('place_changed', function() {
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      return;
-    }
-
-    // If the place has a geometry, update the map center and marker
-    if (place.geometry.location) {
-      map.setCenter(place.geometry.location);
-      map.setZoom(15);  // Zoom in to a higher level
-
-      // Move the marker to the selected location
-      marker.setPosition(place.geometry.location);
-    }
-  });
-}
 // Function to capture user input when the "Next" button is clicked
 document.querySelector(".next-btn").addEventListener("click", function() {
     // Capture input values
