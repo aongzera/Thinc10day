@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Noto Serif Thai, Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f1f1f1;
@@ -96,7 +96,3 @@ body {
   .username:hover {
     text-decoration: underline; /* Underline appears on hover */
   }
-
-
-
-
