@@ -96,3 +96,26 @@ body {
   .username:hover {
     text-decoration: underline; /* Underline appears on hover */
   }
+
+  /* Top navigation bar */
+  .navbar {
+    background-color: #3f9cdf;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .navbar .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 20px;
+  }
