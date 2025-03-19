@@ -15,13 +15,16 @@
   </div>
 
   <header>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#" onclick="login()">Log In</a></li>
-      <li><a href="#" onclick="login()">Sign Up</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
+    <div class="navbar">
+      <div class="logo">Trip Planner</div>
+      <div class="menu">
+        <a href="#">Home</a>
+        <a href="#">Log In</a>
+        <a href="#">Sign Up</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
   </header>
 
   <div class="container">
@@ -33,34 +36,56 @@
   <!-- LIFF SDK included at the bottom of the body -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
+    // Initialize LIFF and handle login state
     function login() {
-        liff.init({
-            liffId: "2007065910-69E5BVwy"
-        }).then(() => {
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            } else {
-                // Fetch user profile after successful login
-                liff.getProfile().then(profile => {
-                    localStorage.setItem('userId', profile.userId);
-                    localStorage.setItem('userName', profile.displayName);
-                    localStorage.setItem('userPicture', profile.pictureUrl);
-                    
-                    // Optional: To ensure data is saved before redirecting
-                    
-                    // Perform a redirect after saving the data, if required
-                    // window.location.href = "your-endpoint-url"; // Uncomment and update as needed
-                }).catch((error) => {
-                    console.error("Error retrieving profile", error);
-                });
-            }
-        }).catch((error) => {
-            console.error("LIFF initialization failed", error);
-        });
+      liff.init({
+          liffId: "2007065910-69E5BVwy"
+          // Replace with your own LIFF ID "2007065910-69E5BVwy"
+      }).then(() => {
+        if (!liff.isLoggedIn()) {
+          // If not logged in, log the user in
+          liff.login();
+        } else {
+          // If logged in, fetch and display the user profile
+          fetchUserProfile();
+        }
+      }).catch((error) => {
+        console.error("LIFF initialization failed", error);
+      });
     }
-    alert("Welcome " + userName);
 
+    // Function to fetch and display the user's profile
+    function fetchUserProfile() {
+      liff.getProfile().then(profile => {
+        // Store user data in local storage
+        localStorage.setItem('userId', profile.userId);
+        localStorage.setItem('userName', profile.displayName);
+        localStorage.setItem('userPicture', profile.pictureUrl);
+
+        // Display the profile picture and username on the page
+        document.getElementById('profile-container').style.display = 'flex';
+        document.getElementById('profile-pic').src = profile.pictureUrl;
+        document.getElementById('username').innerText = profile.displayName;
+      }).catch((error) => {
+        console.error("Error retrieving profile", error);
+      });
+    }
+
+    // Automatically check if the user is logged in when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      liff.init({
+        liffId: localStorage.getElementById('userId') // Replace with your own LIFF ID
+      }).then(() => {
+        if (liff.isLoggedIn()) {
+          // If already logged in, fetch the user profile immediately
+          fetchUserProfile();
+        }
+      }).catch((error) => {
+        console.error("LIFF initialization failed", error);
+      });
+    });
   </script>
+
 
   <footer>
     <div class="footer">
@@ -68,36 +93,6 @@
     </div>
   </footer>
 
-  <!-- LIFF SDK included at the bottom of the body -->
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script>
-    function login() {
-      liff.init({
-          liffId: "2007065910-69E5BVwy"
-      }).then(() => {
-          if (!liff.isLoggedIn()) {
-              liff.login();
-          } else {
-              // Fetch user profile after successful login
-              liff.getProfile().then(profile => {
-                  localStorage.setItem('userId', profile.userId);
-                  localStorage.setItem('userName', profile.displayName);
-                  localStorage.setItem('userPicture', profile.pictureUrl);
-                  alert("Welcome " + profile.displayName);
-
-                  // Show profile picture and username on the page
-                  document.getElementById('profile-container').style.display = 'flex';
-                  document.getElementById('profile-pic').src = profile.pictureUrl;
-                  document.getElementById('username').innerText = profile.displayName;
-              }).catch((error) => {
-                  console.error("Error retrieving profile", error);
-              });
-          }
-      }).catch((error) => {
-          console.error("LIFF initialization failed", error);
-      });
-    }
-  </script>
 </body>
 </html>
 </body>
